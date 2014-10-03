@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @legs.each do |leg| %>
+      <tr>
+        <td><%= leg.title %></td>
+        <td><%= leg.description %></td>
+        <td><%= link_to 'Show', leg %></td>
+        <td><%= link_to 'Edit', edit_leg_path(leg) %></td>
+        <td><%= link_to 'Destroy', leg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -15,8 +15,10 @@ end
 
 # development gems
 group :development, :test do
-  gem 'sqlite3', '1.3.9'    # dev & test database
+#  gem 'sqlite3', '1.3.9'    # dev & test database
   gem 'figaro', '0.7.0'     # env variables
+# Debugging!
+  gem 'byebug'
 end
 
 # Paging
@@ -34,3 +36,15 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass', '3.2.0.2'
+
+# OpenStreetMaps API Gem
+# NOL - not complete, too weird to try to use
+#gem 'rosemary', :git => 'git://github.com/sozialhelden/rosemary'
+
+# MySQL
+gem 'mysql2'
+
+# Based on http://railscasts.com/episodes/273-geocoder
+#gem 'nifty-generators'
+gem 'geocoder'
+gem 'gmaps4rails'

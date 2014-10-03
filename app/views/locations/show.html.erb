@@ -1,0 +1,54 @@
+<p>
+  <strong>Address:</strong>
+  <%= @location.address %>
+</p>
+<p>
+  <strong>Latitude:</strong>
+  <%= @location.latitude %>
+</p>
+<p>
+  <strong>Longitude:</strong>
+  <%= @location.longitude %>
+</p>
+
+<% #= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%= @location.latitude %>,
+        "lng": <%= @location.longitude %>,
+        //"picture": {
+        //  "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+        //  "width":  36,
+        //  "height": 36
+        //},
+        "infowindow": "<%= @location.address %>"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>
+
+<h3>Nearby Locations</h3>
+<% if @location.nearbys %>
+  <ul>
+    <% for location in @location.nearbys(10) %>
+      <li><%= link_to location.address, location %> (<%= location.distance.round(2) %> miles)</li>
+    <% end %>
+  </ul<% title "Location" %>
+<% end %>
+
+<p>
+  <%= link_to "Edit", edit_location_path(@location) %> |
+  <%= link_to "Destroy", @location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", locations_path %>
+</p>
+

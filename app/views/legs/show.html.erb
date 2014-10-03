@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @leg.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @leg.description %>
+</p>
+
+<h2>Add a New Location</h2>
+<%= render 'locations/form' %>
+
+<%= link_to 'Edit', edit_leg_path(@leg) %> |
+<%= link_to 'Back', legs_path %>
