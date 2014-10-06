@@ -19,6 +19,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @leg_location = LegsLocations.new
   end
 
   # GET /locations/1/edit
@@ -29,9 +30,12 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-
+    
     respond_to do |format|
       if @location.save
+        if params[:leg_id]
+          LegsLocations.new(:leg_id => params[:leg_id], :location_id => @location.id).save
+        end      
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else

@@ -11,6 +11,16 @@ class LegsController < ApplicationController
   # GET /legs/1.json
   def show
     @location = Location.new
+    if @leg.locations 
+      @leg_hash = Gmaps4rails.build_markers(@leg.locations) do |location, marker|
+        marker.lat location.latitude
+        marker.lng location.longitude
+        marker.title location.address
+      end    
+    else
+      @leg_hash = nil
+    end
+     
   end
 
   # GET /legs/new
@@ -25,7 +35,7 @@ class LegsController < ApplicationController
   # POST /legs
   # POST /legs.json
   def create
-  byebug
+  
     @leg = Leg.new(leg_params)
 
     respond_to do |format|

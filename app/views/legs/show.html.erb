@@ -10,7 +10,25 @@
   <%= @leg.description %>
 </p>
 
-<h2>Add a New Location</h2>
+<h2>Locations in this Leg</h2>
+<% if @locations = @leg.locations %>
+  <%= render :partial => 'locations/list' %>
+<% end %>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%= raw @leg_hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>
+
+<h2>Create and Add a New Location</h2>
 <%= render 'locations/form' %>
 
 <%= link_to 'Edit', edit_leg_path(@leg) %> |
