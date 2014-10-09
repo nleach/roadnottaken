@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leg_id: 1
+  location_id: 1
+  sort_flag: 1
+
+two:
+  leg_id: 1
+  location_id: 1
+  sort_flag: 1

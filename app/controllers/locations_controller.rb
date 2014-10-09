@@ -34,7 +34,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       if @location.save
         if params[:leg_id]
-          LegsLocations.new(:leg_id => params[:leg_id], :location_id => @location.id).save
+          Waypoint.new(:leg_id => params[:leg_id], :location_id => @location.id, :sort_flag => 0).save
         end      
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }

@@ -1,6 +1,14 @@
 class LegsController < ApplicationController
   before_action :set_leg, only: [:show, :edit, :update, :destroy]
 
+  def move_location_up
+    @location = Location.find(params[:location])
+  end
+  
+  def move_location_down
+  
+  end
+
   # GET /legs
   # GET /legs.json
   def index

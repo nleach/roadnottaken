@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002234329) do
+ActiveRecord::Schema.define(version: 20141009065747) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141002234329) do
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_flag"
   end
 
   create_table "locations", force: true do |t|
@@ -67,5 +68,13 @@ ActiveRecord::Schema.define(version: 20141002234329) do
   end
 
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+
+  create_table "waypoints", force: true do |t|
+    t.integer  "leg_id"
+    t.integer  "location_id"
+    t.integer  "sort_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

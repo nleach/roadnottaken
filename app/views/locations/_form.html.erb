@@ -18,7 +18,7 @@
 
   <% if @leg_location %>
     <%= f.fields_for :leg_location do |ff| %>
-      <%= ff.hidden_field :leg_id, :value => @leg.id %>
+      <%= ff.hidden_field :leg_id, :value => @leg_location.leg_id %>
     <% end %>
   <% end %>
 
