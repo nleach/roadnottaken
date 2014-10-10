@@ -1,12 +1,22 @@
 class LegsController < ApplicationController
   before_action :set_leg, only: [:show, :edit, :update, :destroy]
 
-  def move_location_up
-    @location = Location.find(params[:location])
+  def waypoint_up
+    if params[:waypoint]
+      if waypoint = Waypoint.find(params[:waypoint])
+        waypoint.sort_flag += 1
+        waypoint.save!
+      end
+    end
   end
   
-  def move_location_down
-  
+  def waypoint_down
+    if params[:waypoint]
+      if waypoint = Waypoint.find(params[:waypoint])
+        waypoint.sort_flag -= 1
+        waypoint.save!
+      end
+    end
   end
 
   # GET /legs

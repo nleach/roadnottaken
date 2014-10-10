@@ -12,9 +12,34 @@
 
 <h2>Locations in this Leg</h2>
 <% if @locations = @leg.locations %>
+  
   <% @start = @locations.first %>
   <% @end = @locations.last %>
-  <%= render :partial => 'locations/list' %>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Address</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @leg.waypoints.each do |waypoint| %>
+        <tr>
+          <td>
+            <%= link_to 'Up', :action => 'waypoint_up', :waypoint => waypoint.id %> | 
+            <%= link_to 'Down', :action => 'waypoint_down', :waypoint => waypoint.id %>
+          </td>
+          <td><%= waypoint.location.address %></td>
+          <td><%= link_to 'Show', waypoint.location %></td>
+          <td><%= link_to 'Edit', edit_location_path(waypoint.location) %></td>
+          <td><%= link_to 'Destroy', waypoint.location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div style='width: 800px;'>
     <div id="map" style='width: 800px; height: 400px;'></div>

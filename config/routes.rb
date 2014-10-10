@@ -1,10 +1,15 @@
 Roadnottaken::Application.routes.draw do
   
+  get "/legs/waypoint_up", to: "legs#waypoint_up"
+  get "/legs/waypoint_down", to: "legs#waypoint_down"  
+  
   resources :legs
 
   resources :trips
 
   resources :locations
+  
+  resources :waypoints
 
   root "pages#home"
   
